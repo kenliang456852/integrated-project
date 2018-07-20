@@ -19,6 +19,6 @@ public class ShiroApplication {
     private static Logger logger = LoggerFactory.getLogger(ShiroApplication.class);
     public static void main(String[] args) {
         SpringApplication.run(ShiroApplication.class,args);
-        logger.debug("ShiroApplication execute success");
+        logger.info("ShiroApplication execute success");
     }
 }

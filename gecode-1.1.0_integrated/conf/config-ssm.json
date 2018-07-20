@@ -1,0 +1,71 @@
+{
+    "project": "admin",
+
+    "packagePath" : "com.integrated",
+
+    "author": "gencode",
+    
+    "exportPath":"D:/IdeaWorkSpace/integrated-gecode",
+
+    "dbConfig": {
+        "driverClass": "com.mysql.cj.jdbc.Driver",
+        "username": "root",
+        "password": "root",
+        "url": "jdbc:mysql://127.0.0.1/integrated?useSSL=FALSE&serverTimezone=UTC"
+    },
+    
+	#忽略掉表的开头部分
+    "ignorePrefix": "",
+	
+	#模板的相对路径
+    "templateDir": "/template/def",
+
+	#通过group.prefix 判断这个table是否需要自动生成代码
+	#通过group.name 分组，相同组的代码会放在同一个组的package中
+    "groups" : [
+	    {
+	    	#"acct,apps,auth,busi,data,deliver,ent,function,individual,inspect,material,member,oper,question,receive,rela,role,supplier,sys,user",
+	        "prefix" : "busi_acct_info",
+	        "name" 	 : "shiros"
+	    }
+    ],
+
+    "mappings" : [
+	     {
+	        "template"	:	"pojo.ftl",
+	        "dir"		:	"${project}/${packagePath}/${model}/model",
+	        "packagePath":	"${packagePath}.${model}"
+	    }
+        ,{
+	        "template"	:	"dalMapper.ftl",
+	        "dir"		:	"${project}/${packagePath}/${model}/dao",
+	        "packagePath":	"${packagePath}.${model}",
+	        "ePadding"	:	"Dao"
+	    }
+        ,{
+	        "template"	:	"mybatis_xml.ftl",
+	        "dir"		:	"${project}/${packagePath}/${model}/mappings",
+	        "ePadding"  :   "Dao",
+	        "packagePath":	"${packagePath}.${model}",
+	        "suffix"	:	"xml"
+	    }
+        ,{
+	        "template"	:	"dto.ftl",
+	        "dir"		:	"${project}/${packagePath}/${model}/dto",
+	        "packagePath":	"${packagePath}.${model}",
+	        "ePadding"	:	"DTO"
+	    }
+        ,{
+	        "template"	:	"service_impl.ftl",
+	        "dir"		:	"${project}/${packagePath}/${model}/service/impl",
+	        "packagePath":	"${packagePath}.${model}",
+	        "ePadding"	:	"ServiceImpl"
+	    }
+        ,{
+	        "template"	:	"service_spi.ftl",
+	        "dir"		:	"${project}/${packagePath}/${model}/service",
+	        "packagePath":	"${packagePath}.${model}",
+	        "ePadding"	:	"Service"
+	    }
+    ]
+}

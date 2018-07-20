@@ -17,6 +17,14 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+            <!-- mvn install 跳过junit -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
     <modules>
@@ -25,13 +33,47 @@
         <module>integrated-project-datasource</module>
         <module>integrated-project-shiros</module>
     </modules>
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <env>dev</env>
+            </properties>
+
+        </profile>
+        <profile>
+            <id>test</id>
+            <properties>
+                <env>test</env>
+            </properties>
+
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <env>prod</env>
+            </properties>
+
+        </profile>
+        <profile>
+            <id>local</id>
+            <properties>
+                <env>local</env>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+    </profiles>
     <properties>
         <project_version>1.0</project_version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junit_version>4.12</junit_version>
         <spring_version>4.3.8.RELEASE</spring_version>
-        <spring-boot.version>1.5.3.RELEASE</spring-boot.version>
-        <mysql_version>5.1.37</mysql_version>
+        <spring-boot_version>1.5.3.RELEASE</spring-boot_version>
+        <!--<spring-boot.version>2.0.0.RELEASE</spring-boot.version>-->
+        <druid_version>1.1.10</druid_version>
+        <mysql_version>8.0.11</mysql_version>
         <mybatis_version>3.2.8</mybatis_version>
         <mybatis_spring>1.2.3</mybatis_spring>
         <jackson_version>2.8.3</jackson_version>
@@ -77,12 +119,12 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
-            <version>4.3.8.RELEASE</version>
+            <version>${spring_version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
-            <version>4.3.8.RELEASE</version>
+            <version>${spring_version}</version>
         </dependency>
         <!--<dependency>-->
         <!--<groupId>cn.enn.ygego.sunny</groupId>-->
@@ -115,6 +157,29 @@
             <artifactId>gson</artifactId>
             <version>${gson_version}</version>
         </dependency>
+
+        <!-- mysql mybatis start -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql_version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>${mybatis_version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-spring</artifactId>
+            <version>${mybatis_spring}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${spring_version}</version>
+        </dependency>
+        <!-- 数据库连接池 -->
     </dependencies>
 
 </project>
