@@ -1,7 +1,7 @@
 package ${package_path}.service;
 
 import java.util.List;
-import ${package_path}.entity.${class_name};
+import ${package_path}.model.${class_name};
 
 /**
  * dal Interface:${class_name}
