@@ -1,5 +1,7 @@
 package com.integrated.shiros.service;
 
+import com.integrated.shiros.model.BusiAcctInfo;
+
 /**
  * ClassName: LoginService
  * Description:
@@ -10,4 +12,5 @@ package com.integrated.shiros.service;
  * liangc           修改时间           0.0.1              描述
  */
 public interface LoginService {
+    BusiAcctInfo getBusiAcctInfoByUserName(String userName);
 }

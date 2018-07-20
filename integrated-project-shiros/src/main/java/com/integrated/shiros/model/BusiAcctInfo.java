@@ -12,7 +12,7 @@ public class BusiAcctInfo implements Serializable {
 	private static final long serialVersionUID = 756840878989875125L;
 	
 	private String	id;		
-	private String	userName;		
+	private String	acctName;
 	private String	password;		
 
 	// Constructor
@@ -22,9 +22,9 @@ public class BusiAcctInfo implements Serializable {
 	/**
 	 * full Constructor
 	 */
-	public BusiAcctInfo(String id, String userName, String password) {
+	public BusiAcctInfo(String id, String acctName, String password) {
 		this.id = id;
-		this.userName = userName;
+		this.acctName = acctName;
 		this.password = password;
 	}
 
@@ -36,12 +36,12 @@ public class BusiAcctInfo implements Serializable {
 		this.id = id;
 	}
 
-	public String getUserName() {
-		return userName;
+	public String getAcctName() {
+		return acctName;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setAcctName(String acctName) {
+		this.acctName = acctName;
 	}
 
 	public String getPassword() {
@@ -54,6 +54,6 @@ public class BusiAcctInfo implements Serializable {
 
 	@Override
 	public String toString() {
-		return "BusiAcctInfo [" + "id=" + id+ ", userName=" + userName+ ", password=" + password+  "]";
+		return "BusiAcctInfo [" + "id=" + id+ ", acctName=" + acctName+ ", password=" + password+  "]";
 	}
 }

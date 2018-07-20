@@ -1,19 +1,18 @@
-package com.integrated.shiros.dto;
+package com.integrated.shiros.model;
 
 import java.io.Serializable;
 
 /**
- * DTO:BusiAcctInfo
- * 
+ * entity:BusiAcctInfoDTO
+ *
  * @author gencode
- * @date 2018-7-21
  */
 public class BusiAcctInfoDTO implements Serializable {
-	
-	private static final long serialVersionUID = 370662215636554307L;
-	
+
+	private static final long serialVersionUID = 756840878989875125L;
+
 	private String	id;
-	private String	userName;
+	private String	acctName;
 	private String	password;
 
 	// Constructor
@@ -23,9 +22,9 @@ public class BusiAcctInfoDTO implements Serializable {
 	/**
 	 * full Constructor
 	 */
-	public BusiAcctInfoDTO(String id, String userName, String password) {
+	public BusiAcctInfoDTO(String id, String acctName, String password) {
 		this.id = id;
-		this.userName = userName;
+		this.acctName = acctName;
 		this.password = password;
 	}
 
@@ -36,13 +35,15 @@ public class BusiAcctInfoDTO implements Serializable {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getUserName() {
-		return userName;
+
+	public String getAcctName() {
+		return acctName;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setAcctName(String acctName) {
+		this.acctName = acctName;
 	}
+
 	public String getPassword() {
 		return password;
 	}
@@ -50,8 +51,9 @@ public class BusiAcctInfoDTO implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
 	@Override
 	public String toString() {
-		return "BusiAcctInfoDTO [" + "id=" + id + ", userName=" + userName + ", password=" + password +  "]";
+		return "BusiAcctInfoDTO [" + "id=" + id+ ", acctName=" + acctName+ ", password=" + password+  "]";
 	}
 }

@@ -4,18 +4,18 @@
 
     <resultMap type="com.integrated.shiros.model.BusiAcctInfo" id="busiAcctInfoResultMap">
 		<result property="id" column="ID"  />
-		<result property="userName" column="USER_NAME"  />
+		<result property="acctName" column="ACCT_NAME"  />
 		<result property="password" column="PASSWORD"  />
 	</resultMap>
 	
 	<sql id="table_columns">
 		ID,
-		USER_NAME,
+		ACCT_NAME,
 		PASSWORD
     </sql>
 	<sql id="entity_properties">
 		#{id},
-		#{userName},
+		#{acctName},
 		#{password}
 	</sql>
 
@@ -23,7 +23,7 @@
     <sql id="page_where">
         <trim prefix="where" prefixOverrides="and | or ">
 				<if test="id != null and id != ''">and ID = #{id}</if>
-				<if test="userName != null and userName != ''">and USER_NAME = #{userName}</if>
+				<if test="acctName != null and acctName != ''">and ACCT_NAME = #{acctName}</if>
 				<if test="password != null and password != ''">and PASSWORD = #{password}</if>
         </trim>
     </sql>
@@ -37,12 +37,12 @@
         insert into busi_acct_info
         <trim prefix="(" suffix=")" suffixOverrides="," >
 				<if test="id != null and id != ''">ID,</if>
-				<if test="userName != null and userName != ''">USER_NAME,</if>
+				<if test="acctName != null and acctName != ''">ACCT_NAME,</if>
 				<if test="password != null and password != ''">PASSWORD,</if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
 				<if test="id != null and id != ''">#{id},</if>
-				<if test="userName != null and userName != ''">#{userName},</if>
+				<if test="acctName != null and acctName != ''">#{acctName},</if>
 				<if test="password != null and password != ''">#{password},</if>
         </trim>
 	</insert>
@@ -64,7 +64,7 @@
 	<update id="updateByPrimaryKey" parameterType="com.integrated.shiros.model.BusiAcctInfo">
 		update busi_acct_info 
 		<trim prefix="set" suffixOverrides=",">
-				<if test="userName != null and userName != ''">USER_NAME = #{userName},</if>
+				<if test="acctName != null and acctName != ''">ACCT_NAME = #{acctName},</if>
 				<if test="password != null and password != ''">PASSWORD = #{password},</if>
 		</trim>
 		<trim prefix="where" prefixOverrides="and | or ">
@@ -98,6 +98,11 @@
 	</select>
 	
 	<!-- other SQL -->
-
-
+	<select id="getByacctName" resultMap="busiAcctInfoResultMap"  >
+		select <include refid="table_columns" />
+		from busi_acct_info
+		<trim prefix="where" prefixOverrides="and | or ">
+			<if test="1==1">and ACCT_NAME = #{acctName}</if>
+		</trim>
+	</select>
 </mapper>

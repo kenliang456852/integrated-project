@@ -28,7 +28,5 @@ public interface BusiAcctInfoDao {
 
     BusiAcctInfo getByPrimaryKey(@Param("id") String id);
 
-	
-
-
+    BusiAcctInfo getByUserName(@Param("userName")String userName);
 }
