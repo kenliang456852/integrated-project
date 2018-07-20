@@ -36,7 +36,8 @@ public class CustomRealm extends AuthorizingRealm {
      * @param principalCollection
      * @return
      */
-    @Override protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
+    @Override
+    protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         // 1.从主体传过来的认证信息中，获得用户名
         String userName = (String) principalCollection.getPrimaryPrincipal();
         // TODO:获取用户的角色数据
@@ -72,7 +73,8 @@ public class CustomRealm extends AuthorizingRealm {
      * @param authenticationToken
      * @return
      */
-    @Override protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken)
+    @Override
+    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken)
             throws AuthenticationException {
         // 1.从主体传过来的认证信息中，获得用户名
         String userName = (String) authenticationToken.getPrincipal();

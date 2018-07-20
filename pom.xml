@@ -30,6 +30,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junit_version>4.12</junit_version>
         <spring_version>4.3.8.RELEASE</spring_version>
+        <spring-boot.version>1.5.3.RELEASE</spring-boot.version>
         <mysql_version>5.1.37</mysql_version>
         <mybatis_version>3.2.8</mybatis_version>
         <mybatis_spring>1.2.3</mybatis_spring>
