@@ -98,11 +98,11 @@
 	</select>
 	
 	<!-- other SQL -->
-	<select id="getByacctName" resultMap="busiAcctInfoResultMap"  >
+	<select id="getByUserName" resultMap="busiAcctInfoResultMap"  >
 		select <include refid="table_columns" />
 		from busi_acct_info
 		<trim prefix="where" prefixOverrides="and | or ">
-			<if test="1==1">and ACCT_NAME = #{acctName}</if>
+			<if test="1==1">and ACCT_NAME = #{userName}</if>
 		</trim>
 	</select>
 </mapper>

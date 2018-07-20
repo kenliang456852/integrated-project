@@ -26,10 +26,10 @@ public class CustomRealmTest {
         // 2.主体提交认证请求
         SecurityUtils.setSecurityManager(defaultSecurityManager);
         Subject subject = SecurityUtils.getSubject();
-        subject.login(new UsernamePasswordToken("kenliang","123456"));
+        subject.login(new UsernamePasswordToken("admin","admin"));
         System.out.println("isAuthenticated---" + subject.isAuthenticated());
 
-        subject.checkRole("admin");
-        subject.checkPermissions("user:delete","user:add");
+//        subject.checkRole("admin");
+//        subject.checkPermissions("user:delete","user:add");
     }
 }
