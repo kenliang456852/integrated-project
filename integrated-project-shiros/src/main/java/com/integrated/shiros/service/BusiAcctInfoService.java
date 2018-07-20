@@ -1,7 +1,7 @@
 package com.integrated.shiros.service;
 
 import java.util.List;
-import com.integrated.shiros.entity.BusiAcctInfo;
+import com.integrated.shiros.model.BusiAcctInfo;
 
 /**
  * dal Interface:BusiAcctInfo

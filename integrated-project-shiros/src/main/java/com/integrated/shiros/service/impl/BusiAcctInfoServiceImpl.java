@@ -1,12 +1,12 @@
 package com.integrated.shiros.service.impl;
 
-import java.util.List;
-import com.integrated.shiros.service.BusiAcctInfoService;
 import com.integrated.shiros.dao.BusiAcctInfoDao;
-import com.integrated.shiros.entity.BusiAcctInfo;
-
-import org.springframework.stereotype.Service;
+import com.integrated.shiros.model.BusiAcctInfo;
+import com.integrated.shiros.service.BusiAcctInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 
 
