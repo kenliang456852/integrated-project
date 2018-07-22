@@ -1,6 +1,9 @@
 package com.integrated.shiros.handler;
 
 import com.integrated.core.web.json.JsonResponse;
+import com.integrated.utils.common.IpUtils;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.UnknownAccountException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -25,11 +28,31 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(value=Exception.class)
     @ResponseBody
-    private JsonResponse exceptionHandler(HttpServletRequest requsst, HttpServletResponse response, Exception e) {
-        logger.error("异常：~\r\n{}\r\n,{}",e.getMessage(), e.getStackTrace());
-        if(e instanceof RuntimeException) {
+    private JsonResponse exceptionHandler(HttpServletRequest request, HttpServletResponse response, Exception e) {
+//        logger.error("异常信息：{}",e.getMessage());
+        //url
+        logger.error("url={}", request.getRequestURL());
+
+        //method
+        logger.error("method={}", request.getMethod());
+
+        //ip
+        logger.error("ip={}", IpUtils.getIpAddr(request));
+
+        logger.error("异常：", e);
+
+        if(e instanceof UnknownAccountException ) {
+            JsonResponse unknownAccountJsonResponse = JsonResponse.failRespose(e);
+            unknownAccountJsonResponse.setRetDesc("用户名或密码错误！");
+            return unknownAccountJsonResponse;
+        } else if (e instanceof IncorrectCredentialsException ){
+            JsonResponse incorrectCredentialsJsonResponse = JsonResponse.failRespose(e);
+            incorrectCredentialsJsonResponse.setRetDesc("用户名或密码错误！");
+            return incorrectCredentialsJsonResponse;
+        } else if(e instanceof RuntimeException) {
             return JsonResponse.failRespose(e);
         }
+
         return JsonResponse.exceptionRespose(e);
     }
 

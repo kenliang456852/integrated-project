@@ -24,6 +24,10 @@ $(function () {
                 console.log(data.retCode);
                 if(data && data.retCode ==='0000000') {
                     window.location.href = $ctx + "toPage/index.html";
+                } else if(data) {
+                    alert(data.retDesc);
+                } else {
+                    alert("服务器异常！请联系管理员。")
                 }
             }
         });
