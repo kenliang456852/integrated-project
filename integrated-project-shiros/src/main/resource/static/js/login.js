@@ -21,7 +21,10 @@ $(function () {
             beforeSend: function() {
             },
             success: function (data) {
-                console.log(data.retCode)
+                console.log(data.retCode);
+                if(data && data.retCode ==='0000000') {
+                    window.location.href = $ctx + "toPage/index.html";
+                }
             }
         });
     });
