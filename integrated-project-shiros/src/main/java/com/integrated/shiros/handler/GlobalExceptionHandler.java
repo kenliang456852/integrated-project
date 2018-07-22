@@ -1,6 +1,8 @@
 package com.integrated.shiros.handler;
 
 import com.integrated.core.web.json.JsonResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -19,12 +21,14 @@ import javax.servlet.http.HttpServletResponse;
  */
 @ControllerAdvice
 public class GlobalExceptionHandler {
+    private Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
     @ExceptionHandler(value=Exception.class)
     @ResponseBody
     private JsonResponse exceptionHandler(HttpServletRequest requsst, HttpServletResponse response, Exception e) {
+        logger.error("异常：~\r\n{}\r\n,{}",e.getMessage(), e.getStackTrace());
         if(e instanceof RuntimeException) {
-            return JsonResponse.failRespose(e.getMessage());
+            return JsonResponse.failRespose(e);
         }
         return JsonResponse.exceptionRespose(e);
     }

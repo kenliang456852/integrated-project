@@ -59,14 +59,14 @@ public class JsonResponse <T> implements Serializable {
     }
 
     public static JsonResponse failRespose() {
-        return failRespose(StringUtils.EMPTY);
+        return failRespose(new Exception(StringUtils.EMPTY));
     }
 
-    public static JsonResponse failRespose(String msg) {
+    public static JsonResponse failRespose(Exception e) {
         return new JsonResponse(BasicResponseCode.FAIL.statusKey
                 , BasicResponseCode.FAIL.statusVal
                 , DateUtils.getNowTime()
-                , msg, null);
+                , e.getMessage(), null);
     }
 
     public static JsonResponse exceptionRespose() {

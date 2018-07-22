@@ -3,6 +3,7 @@ package com.integrated.shiros.configs;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.ImportResource;
 
 /**
  * ClassName: WebComponentConfig
@@ -13,7 +14,8 @@ import org.springframework.context.annotation.Configuration;
  * <author>          <time>          <version>          <desc>
  * liangc           修改时间           0.0.1              描述
  */
-//@Configuration
+@Configuration
+@ImportResource(locations= {"classpath:spring-*.xml"})
 public class WebComponentConfig {
 
 //    @Bean

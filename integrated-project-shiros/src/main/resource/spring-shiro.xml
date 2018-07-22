@@ -15,13 +15,14 @@
     <!-- ============================================================================ -->
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager" />
-        <property name="loginUrl" value="login.html" />
+        <property name="loginUrl" value="toPage/login.html" />
         <property name="unauthorizedUrl" value="403.html"/>
         <property name="filterChainDefinitions">
             <value>
                 /*.css = anon
                 /*.js = anon
-                /login.html = anon
+                /toPage/login.html = anon
+                /login = anon
                 /* = authc
             </value>
         </property>

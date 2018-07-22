@@ -1,5 +1,6 @@
 package com.integrated.shiros.realm;
 
+import com.integrated.shiros.service.LoginService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -10,6 +11,7 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
@@ -24,14 +26,13 @@ import java.util.Set;
  * <author>          <time>          <version>          <desc>
  * liangc           修改时间           0.0.1              描述
  */
-@Component
 public class CustomRealm extends AuthorizingRealm {
     {
         super.setName("customRealm");
     }
 
-//    @Autowired
-//    private LoginService loginService;
+    @Autowired
+    private LoginService loginService;
 
     /**
      * @Description 授权
@@ -83,8 +84,8 @@ public class CustomRealm extends AuthorizingRealm {
         // 1.从主体传过来的认证信息中，获得用户名
         String userName = (String) authenticationToken.getPrincipal();
         // 2.通过用户名到数据库查询凭证
-        String password = getPasswordByUserName(userName);
-//        String password = loginService.getBusiAcctInfoByUserName(userName);
+//        String password = getPasswordByUserName(userName);
+        String password = loginService.getBusiAcctInfoByUserName(userName);
         if( StringUtils.isBlank(password)) {
             return null;
         }
@@ -93,8 +94,8 @@ public class CustomRealm extends AuthorizingRealm {
         return authenticationInfo;
     }
 
-    private String getPasswordByUserName(String userName) {
-        return "a66abb5684c45962d887564f08346e8d";
-    }
+//    private String getPasswordByUserName(String userName) {
+//        return "a66abb5684c45962d887564f08346e8d";
+//    }
 
 }
