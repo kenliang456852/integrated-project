@@ -15,8 +15,10 @@ import java.util.UUID;
  */
 public class mainTest {
     public static void main(String[] args) {
-        System.out.println(UUID.randomUUID().toString());
-        Md5Hash md5Hash = new Md5Hash("123456","admin");
-        System.out.println(md5Hash.toString());
+        System.out.println("UUID -- " + UUID.randomUUID().toString());
+        Md5Hash md5Hash = new Md5Hash("123456");
+        System.out.println("md5Hash -- " + md5Hash.toString());
+        Md5Hash md5Hash1 = new Md5Hash("123456","admin");
+        System.out.println("md5Hash1 -- " + md5Hash1.toString());
     }
 }
