@@ -7,9 +7,6 @@ server:
 
 
 ##################  spring配置  ###################
-spring:
-  profiles:
-    active: local
 #    dfs:
 #      readUrl: https://www.xinlianpu.com:9999
 #  freemarker:
@@ -51,6 +48,8 @@ spring:
 ###################  开发环境的profile  ###################
 ##########################################################
 spring:
+  profiles:
+    active: local
   datasource:
     url: jdbc:mysql://127.0.0.1/integrated?useSSL=FALSE&serverTimezone=UTC
     username: root
@@ -73,12 +72,22 @@ spring:
     maxOpenPreparedStatements: 20
     connectionProperties: druid.stat.mergeSql=true
     db-name: integrated
-# 该配置节点为独立的节点
+  thymeleaf:
+    prefix: classpath:/pages/
+  resources:
+    static-locations: classpath:/static/
+  mvc:
+    static-path-pattern: /static/**
+
 mybatis:
   mapper-locations: classpath:mappings/*.xml  # 注意：一定要对应mapper映射xml文件的所在路径
-  type-aliases-package: com.winter.model  # 注意：对应实体类的路径
-  autoMappingBehavior: PARTIAL
-  useGeneratedKeys: false
+  type-aliases-package: com.integrated.shiros.model  # 注意：对应实体类的路径
+  configuration:
+    use-generated-keys: false # 使用jdbc的getGeneratedKey获取数据库自增主键 因为用uuid 作为主键 所以设置为false
+    use-column-label: true # 使用标签替换列别名 默认是true
+    map-underscore-to-camel-case: true # 使用驼峰命名转换：Table{create_time} --> entity{createTime}
+    auto-mapping-behavior: partial
+
 
 ##########################################################
 ###################  dubbo 配置 ###################

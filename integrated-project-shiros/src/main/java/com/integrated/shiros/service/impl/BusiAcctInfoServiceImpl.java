@@ -15,7 +15,7 @@ import java.util.List;
  * @author gencode
  * @date 2018-7-21
  */
-@Service
+//@Service
 public class BusiAcctInfoServiceImpl implements BusiAcctInfoService{
 
     @Autowired

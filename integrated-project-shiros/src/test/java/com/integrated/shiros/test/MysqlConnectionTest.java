@@ -20,7 +20,7 @@ public class MysqlConnectionTest {
         Statement st = conn.createStatement();
         ResultSet rs = st.executeQuery("select * from busi_acct_info");
         while (rs.next()) {
-            for (int i = 1; i <= 4; i++) {
+            for (int i = 1; i <= 3; i++) {
                 System.out.print(rs.getString(i) + "\t");
             }
             System.out.println();

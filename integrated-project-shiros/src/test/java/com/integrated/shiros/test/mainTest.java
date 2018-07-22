@@ -1,5 +1,7 @@
 package com.integrated.shiros.test;
 
+import org.apache.shiro.crypto.hash.Md5Hash;
+
 import java.util.UUID;
 
 /**
@@ -14,5 +16,7 @@ import java.util.UUID;
 public class mainTest {
     public static void main(String[] args) {
         System.out.println(UUID.randomUUID().toString());
+        Md5Hash md5Hash = new Md5Hash("123456","admin");
+        System.out.println(md5Hash.toString());
     }
 }

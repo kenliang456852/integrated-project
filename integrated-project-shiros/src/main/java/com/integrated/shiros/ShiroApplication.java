@@ -1,5 +1,6 @@
 package com.integrated.shiros;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -14,7 +15,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * <author>          <time>          <version>          <desc>
  * liangc           修改时间           0.0.1              描述
  */
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"com.integrated.shiros"})
+@MapperScan(basePackages = {"com.integrated.shiros.dao"})
 public class ShiroApplication {
     private static Logger logger = LoggerFactory.getLogger(ShiroApplication.class);
     public static void main(String[] args) {
