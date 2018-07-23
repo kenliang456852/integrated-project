@@ -12,20 +12,20 @@ import java.io.IOException;
  * <author>          <time>          <version>          <desc>
  * liangc           修改时间           0.0.1              描述
  */
-public class ShiroFilter implements Filter {
-    @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
-
-    }
-
-    @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-            throws IOException, ServletException {
-
-    }
-
-    @Override
-    public void destroy() {
-
-    }
+public class ShiroFilter {//implements Filter {
+//    @Override
+//    public void init(FilterConfig filterConfig) throws ServletException {
+//
+//    }
+//
+//    @Override
+//    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+//            throws IOException, ServletException {
+//
+//    }
+//
+//    @Override
+//    public void destroy() {
+//
+//    }
 }

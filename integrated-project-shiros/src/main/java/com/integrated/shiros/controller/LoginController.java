@@ -45,7 +45,7 @@ public class LoginController {
     }
 
     @GetMapping("/testRole1")
-    @RequiresRoles("add")
+    @RequiresRoles("add2add")
     public JsonResponse testRole1() {
 
         return new JsonResponse();
