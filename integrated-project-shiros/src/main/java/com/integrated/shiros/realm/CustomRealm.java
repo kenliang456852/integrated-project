@@ -4,7 +4,6 @@ import com.integrated.shiros.model.BusiAcctInfo;
 import com.integrated.shiros.model.PermissionInfo;
 import com.integrated.shiros.model.RoleInfo;
 import com.integrated.shiros.service.LoginService;
-import com.integrated.utils.common.ListUtils;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -17,7 +16,6 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
 import java.util.List;
