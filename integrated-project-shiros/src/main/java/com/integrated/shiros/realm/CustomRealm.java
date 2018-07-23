@@ -1,5 +1,6 @@
 package com.integrated.shiros.realm;
 
+import com.integrated.shiros.model.BusiAcctInfo;
 import com.integrated.shiros.service.LoginService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -84,8 +85,8 @@ public class CustomRealm extends AuthorizingRealm {
         // 1.从主体传过来的认证信息中，获得用户名
         String userName = (String) authenticationToken.getPrincipal();
         // 2.通过用户名到数据库查询凭证
-//        String password = getPasswordByUserName(userName);
-        String password = loginService.getBusiAcctInfoByUserName(userName);
+        String password = getPasswordByUserName(userName);
+//        String password = loginService.getBusiAcctInfoByUserName(userName);
         if( StringUtils.isBlank(password)) {
             return null;
         }
@@ -94,8 +95,12 @@ public class CustomRealm extends AuthorizingRealm {
         return authenticationInfo;
     }
 
-//    private String getPasswordByUserName(String userName) {
-//        return "a66abb5684c45962d887564f08346e8d";
-//    }
+    private String getPasswordByUserName(String userName) {
+        BusiAcctInfo busiAcctInfo = loginService.getBusiAcctInfoByUserName(userName);
+        if(busiAcctInfo!=null) {
+            return busiAcctInfo.getPassword();
+        }
+        return StringUtils.EMPTY;
+    }
 
 }

@@ -12,5 +12,5 @@ import com.integrated.shiros.model.BusiAcctInfo;
  * liangc           修改时间           0.0.1              描述
  */
 public interface LoginService {
-    String getBusiAcctInfoByUserName(String userName);
+    BusiAcctInfo getBusiAcctInfoByUserName(String userName);
 }

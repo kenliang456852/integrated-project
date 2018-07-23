@@ -22,11 +22,7 @@ public class LoginServiceImpl implements LoginService {
     private BusiAcctInfoDao busiAcctInfoDao;
 
     @Override
-    public String getBusiAcctInfoByUserName(String userName){
-        BusiAcctInfo busiAcctInfo = busiAcctInfoDao.getByUserName(userName);
-        if(null != busiAcctInfo) {
-            return busiAcctInfo.getPassword();
-        }
-        return null;
+    public BusiAcctInfo getBusiAcctInfoByUserName(String userName){
+        return busiAcctInfoDao.getByUserName(userName);
     }
 }
