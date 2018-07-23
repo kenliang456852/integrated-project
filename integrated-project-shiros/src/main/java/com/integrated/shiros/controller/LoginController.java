@@ -37,15 +37,21 @@ public class LoginController {
         return new JsonResponse();
     }
 
+    @PostMapping("register")
+    public JsonResponse register() {
+
+        return new JsonResponse();
+    }
+
     @GetMapping("/testRole")
-    @RequiresRoles("admin")
+//    @RequiresRoles("admin")
     public JsonResponse testRole() {
 
         return new JsonResponse();
     }
 
     @GetMapping("/testRole1")
-    @RequiresRoles("add2add")
+//    @RequiresRoles("add2add")
     public JsonResponse testRole1() {
 
         return new JsonResponse();

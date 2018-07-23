@@ -15,16 +15,21 @@
     <!-- ==========================shiro================================================ -->
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager" />
-        <property name="loginUrl" value="toPage/login.html" />
-        <property name="unauthorizedUrl" value="toPage/403.html"/>
+        <property name="loginUrl" value="login.html" />
+        <property name="unauthorizedUrl" value="403.html"/>
         <property name="filterChainDefinitions">
             <value>
-                /*.css = anon
-                /*.js = anon
-                /toPage/login.html = anon
+                /login.html = anon
                 /login = anon
+                /testRole = rolesOr["admin","user"]
+                /testRole1 = roles["admin","user"]
                 /* = authc
             </value>
+        </property>
+        <property name="filters">
+            <util:map>
+                <entry key="roleOr" value-ref="roleOrFilter" />
+            </util:map>
         </property>
     </bean>
 
@@ -45,5 +50,5 @@
         <property name="securityManager" ref="securityManager" />
     </bean>
     <!-- ============================================================================ -->
-
+    <bean id="roleOrFilter" class="com.integrated.shiros.filter.RolesOrFilter"/>
 </beans>

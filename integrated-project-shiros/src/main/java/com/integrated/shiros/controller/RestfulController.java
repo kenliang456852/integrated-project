@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 @Controller
 public class RestfulController {
 
-    @GetMapping("/toPage/{pageName}.html")
+    @GetMapping("/{pageName}.html")
     public String toPage(@PathVariable String pageName) {
         return pageName;
     }
