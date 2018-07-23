@@ -5,7 +5,7 @@
 
     "author": "gencode",
     
-    "exportPath":"D:/IdeaWorkSpace/integrated-gecode",
+    "exportPath":"D:/own_space/integrated-gecode",
 
     "dbConfig": {
         "driverClass": "com.mysql.cj.jdbc.Driver",
@@ -25,7 +25,7 @@
     "groups" : [
 	    {
 	    	#"acct,apps,auth,busi,data,deliver,ent,function,individual,inspect,material,member,oper,question,receive,rela,role,supplier,sys,user",
-	        "prefix" : "busi_acct_info",
+	        "prefix" : "",
 	        "name" 	 : "shiros"
 	    }
     ],
