@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.integrated.shiros.dao.RoleInfoDao">
+
+    <resultMap type="com.integrated.shiros.model.RoleInfo" id="roleInfoResultMap">
+		<result property="id" column="ID"  />
+		<result property="roleName" column="ROLE_NAME"  />
+	</resultMap>
+	
+	<sql id="table_columns">
+		ID,
+		ROLE_NAME
+    </sql>
+	<sql id="entity_properties">
+		#{id},
+		#{roleName}
+	</sql>
+
+    <!-- columnName like concat('%',#columnName#,'%') -->
+    <sql id="page_where">
+        <trim prefix="where" prefixOverrides="and | or ">
+				<if test="id != null and id != ''">and ID = #{id}</if>
+				<if test="roleName != null and roleName != ''">and ROLE_NAME = #{roleName}</if>
+        </trim>
+    </sql>
+
+	<insert id="insert" parameterType="com.integrated.shiros.model.RoleInfo" >
+		insert into role_info( <include refid="table_columns" /> ) 
+		values ( <include refid="entity_properties" /> )
+	</insert>
+
+    <insert id="insertSelective" parameterType="com.integrated.shiros.model.RoleInfo">
+        insert into role_info
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+				<if test="id != null and id != ''">ID,</if>
+				<if test="roleName != null and roleName != ''">ROLE_NAME,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+				<if test="id != null and id != ''">#{id},</if>
+				<if test="roleName != null and roleName != ''">#{roleName},</if>
+        </trim>
+	</insert>
+
+
+	<delete id="delete" parameterType="com.integrated.shiros.model.RoleInfo">
+		delete from role_info
+        <include refid="page_where" />
+	</delete>
+
+	<delete id="deleteByPrimaryKey">
+		delete from role_info
+		<trim prefix="where" prefixOverrides="and | or ">
+			<if test="1==1">and ID = #{id}</if>
+        </trim>
+	</delete>
+
+
+	<update id="updateByPrimaryKey" parameterType="com.integrated.shiros.model.RoleInfo">
+		update role_info 
+		<trim prefix="set" suffixOverrides=",">
+				<if test="roleName != null and roleName != ''">ROLE_NAME = #{roleName},</if>
+		</trim>
+		<trim prefix="where" prefixOverrides="and | or ">
+			<if test="1==1">and ID = #{id}</if>
+        </trim>
+	</update>
+
+    <select id="findAll" resultMap="roleInfoResultMap">
+        select <include refid="table_columns" />
+        from role_info
+    </select>
+
+    <select id="find" resultMap="roleInfoResultMap">
+        select <include refid="table_columns" />
+        from role_info
+        <include refid="page_where" />
+	</select>
+
+    <select id="getCount" resultType="int" >
+        select count(*) from role_info
+        <include refid="page_where" />
+    </select>
+
+
+    <select id="getByPrimaryKey" resultMap="roleInfoResultMap"  >
+		select <include refid="table_columns" />
+		from role_info
+		<trim prefix="where" prefixOverrides="and | or ">
+			<if test="1==1">and ID = #{id}</if>
+        </trim>
+	</select>
+	
+	<!-- other SQL -->
+
+
+</mapper>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.integrated.shiros.dao.AcctRoleDao">
+
+    <resultMap type="com.integrated.shiros.model.AcctRole" id="acctRoleResultMap">
+		<result property="id" column="ID"  />
+		<result property="acctId" column="ACCT_ID"  />
+		<result property="roleId" column="ROLE_ID"  />
+	</resultMap>
+	
+	<sql id="table_columns">
+		ID,
+		ACCT_ID,
+		ROLE_ID
+    </sql>
+	<sql id="entity_properties">
+		#{id},
+		#{acctId},
+		#{roleId}
+	</sql>
+
+    <!-- columnName like concat('%',#columnName#,'%') -->
+    <sql id="page_where">
+        <trim prefix="where" prefixOverrides="and | or ">
+				<if test="id != null and id != ''">and ID = #{id}</if>
+				<if test="acctId != null and acctId != ''">and ACCT_ID = #{acctId}</if>
+				<if test="roleId != null and roleId != ''">and ROLE_ID = #{roleId}</if>
+        </trim>
+    </sql>
+
+	<insert id="insert" parameterType="com.integrated.shiros.model.AcctRole" >
+		insert into acct_role( <include refid="table_columns" /> ) 
+		values ( <include refid="entity_properties" /> )
+	</insert>
+
+    <insert id="insertSelective" parameterType="com.integrated.shiros.model.AcctRole">
+        insert into acct_role
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+				<if test="id != null and id != ''">ID,</if>
+				<if test="acctId != null and acctId != ''">ACCT_ID,</if>
+				<if test="roleId != null and roleId != ''">ROLE_ID,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+				<if test="id != null and id != ''">#{id},</if>
+				<if test="acctId != null and acctId != ''">#{acctId},</if>
+				<if test="roleId != null and roleId != ''">#{roleId},</if>
+        </trim>
+	</insert>
+
+
+	<delete id="delete" parameterType="com.integrated.shiros.model.AcctRole">
+		delete from acct_role
+        <include refid="page_where" />
+	</delete>
+
+	<delete id="deleteByPrimaryKey">
+		delete from acct_role
+		<trim prefix="where" prefixOverrides="and | or ">
+			<if test="1==1">and ID = #{id}</if>
+        </trim>
+	</delete>
+
+
+	<update id="updateByPrimaryKey" parameterType="com.integrated.shiros.model.AcctRole">
+		update acct_role 
+		<trim prefix="set" suffixOverrides=",">
+				<if test="acctId != null and acctId != ''">ACCT_ID = #{acctId},</if>
+				<if test="roleId != null and roleId != ''">ROLE_ID = #{roleId},</if>
+		</trim>
+		<trim prefix="where" prefixOverrides="and | or ">
+			<if test="1==1">and ID = #{id}</if>
+        </trim>
+	</update>
+
+    <select id="findAll" resultMap="acctRoleResultMap">
+        select <include refid="table_columns" />
+        from acct_role
+    </select>
+
+    <select id="find" resultMap="acctRoleResultMap">
+        select <include refid="table_columns" />
+        from acct_role
+        <include refid="page_where" />
+	</select>
+
+    <select id="getCount" resultType="int" >
+        select count(*) from acct_role
+        <include refid="page_where" />
+    </select>
+
+
+    <select id="getByPrimaryKey" resultMap="acctRoleResultMap"  >
+		select <include refid="table_columns" />
+		from acct_role
+		<trim prefix="where" prefixOverrides="and | or ">
+			<if test="1==1">and ID = #{id}</if>
+        </trim>
+	</select>
+	
+	<!-- other SQL -->
+
+
+</mapper>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.integrated.shiros.dao.PermissionInfoDao">
+
+    <resultMap type="com.integrated.shiros.model.PermissionInfo" id="permissionInfoResultMap">
+		<result property="id" column="ID"  />
+		<result property="permissionName" column="PERMISSION_NAME"  />
+	</resultMap>
+	
+	<sql id="table_columns">
+		ID,
+		PERMISSION_NAME
+    </sql>
+	<sql id="entity_properties">
+		#{id},
+		#{permissionName}
+	</sql>
+
+    <!-- columnName like concat('%',#columnName#,'%') -->
+    <sql id="page_where">
+        <trim prefix="where" prefixOverrides="and | or ">
+				<if test="id != null and id != ''">and ID = #{id}</if>
+				<if test="permissionName != null and permissionName != ''">and PERMISSION_NAME = #{permissionName}</if>
+        </trim>
+    </sql>
+
+	<insert id="insert" parameterType="com.integrated.shiros.model.PermissionInfo" >
+		insert into permission_info( <include refid="table_columns" /> ) 
+		values ( <include refid="entity_properties" /> )
+	</insert>
+
+    <insert id="insertSelective" parameterType="com.integrated.shiros.model.PermissionInfo">
+        insert into permission_info
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+				<if test="id != null and id != ''">ID,</if>
+				<if test="permissionName != null and permissionName != ''">PERMISSION_NAME,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+				<if test="id != null and id != ''">#{id},</if>
+				<if test="permissionName != null and permissionName != ''">#{permissionName},</if>
+        </trim>
+	</insert>
+
+
+	<delete id="delete" parameterType="com.integrated.shiros.model.PermissionInfo">
+		delete from permission_info
+        <include refid="page_where" />
+	</delete>
+
+	<delete id="deleteByPrimaryKey">
+		delete from permission_info
+		<trim prefix="where" prefixOverrides="and | or ">
+			<if test="1==1">and ID = #{id}</if>
+        </trim>
+	</delete>
+
+
+	<update id="updateByPrimaryKey" parameterType="com.integrated.shiros.model.PermissionInfo">
+		update permission_info 
+		<trim prefix="set" suffixOverrides=",">
+				<if test="permissionName != null and permissionName != ''">PERMISSION_NAME = #{permissionName},</if>
+		</trim>
+		<trim prefix="where" prefixOverrides="and | or ">
+			<if test="1==1">and ID = #{id}</if>
+        </trim>
+	</update>
+
+    <select id="findAll" resultMap="permissionInfoResultMap">
+        select <include refid="table_columns" />
+        from permission_info
+    </select>
+
+    <select id="find" resultMap="permissionInfoResultMap">
+        select <include refid="table_columns" />
+        from permission_info
+        <include refid="page_where" />
+	</select>
+
+    <select id="getCount" resultType="int" >
+        select count(*) from permission_info
+        <include refid="page_where" />
+    </select>
+
+
+    <select id="getByPrimaryKey" resultMap="permissionInfoResultMap"  >
+		select <include refid="table_columns" />
+		from permission_info
+		<trim prefix="where" prefixOverrides="and | or ">
+			<if test="1==1">and ID = #{id}</if>
+        </trim>
+	</select>
+	
+	<!-- other SQL -->
+
+
+</mapper>

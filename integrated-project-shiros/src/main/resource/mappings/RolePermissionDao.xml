@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.integrated.shiros.dao.RolePermissionDao">
+
+    <resultMap type="com.integrated.shiros.model.RolePermission" id="rolePermissionResultMap">
+		<result property="id" column="ID"  />
+		<result property="roleId" column="ROLE_ID"  />
+		<result property="permissionId" column="PERMISSION_ID"  />
+	</resultMap>
+	
+	<sql id="table_columns">
+		ID,
+		ROLE_ID,
+		PERMISSION_ID
+    </sql>
+	<sql id="entity_properties">
+		#{id},
+		#{roleId},
+		#{permissionId}
+	</sql>
+
+    <!-- columnName like concat('%',#columnName#,'%') -->
+    <sql id="page_where">
+        <trim prefix="where" prefixOverrides="and | or ">
+				<if test="id != null and id != ''">and ID = #{id}</if>
+				<if test="roleId != null and roleId != ''">and ROLE_ID = #{roleId}</if>
+				<if test="permissionId != null and permissionId != ''">and PERMISSION_ID = #{permissionId}</if>
+        </trim>
+    </sql>
+
+	<insert id="insert" parameterType="com.integrated.shiros.model.RolePermission" >
+		insert into role_permission( <include refid="table_columns" /> ) 
+		values ( <include refid="entity_properties" /> )
+	</insert>
+
+    <insert id="insertSelective" parameterType="com.integrated.shiros.model.RolePermission">
+        insert into role_permission
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+				<if test="id != null and id != ''">ID,</if>
+				<if test="roleId != null and roleId != ''">ROLE_ID,</if>
+				<if test="permissionId != null and permissionId != ''">PERMISSION_ID,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+				<if test="id != null and id != ''">#{id},</if>
+				<if test="roleId != null and roleId != ''">#{roleId},</if>
+				<if test="permissionId != null and permissionId != ''">#{permissionId},</if>
+        </trim>
+	</insert>
+
+
+	<delete id="delete" parameterType="com.integrated.shiros.model.RolePermission">
+		delete from role_permission
+        <include refid="page_where" />
+	</delete>
+
+	<delete id="deleteByPrimaryKey">
+		delete from role_permission
+		<trim prefix="where" prefixOverrides="and | or ">
+			<if test="1==1">and ID = #{id}</if>
+        </trim>
+	</delete>
+
+
+	<update id="updateByPrimaryKey" parameterType="com.integrated.shiros.model.RolePermission">
+		update role_permission 
+		<trim prefix="set" suffixOverrides=",">
+				<if test="roleId != null and roleId != ''">ROLE_ID = #{roleId},</if>
+				<if test="permissionId != null and permissionId != ''">PERMISSION_ID = #{permissionId},</if>
+		</trim>
+		<trim prefix="where" prefixOverrides="and | or ">
+			<if test="1==1">and ID = #{id}</if>
+        </trim>
+	</update>
+
+    <select id="findAll" resultMap="rolePermissionResultMap">
+        select <include refid="table_columns" />
+        from role_permission
+    </select>
+
+    <select id="find" resultMap="rolePermissionResultMap">
+        select <include refid="table_columns" />
+        from role_permission
+        <include refid="page_where" />
+	</select>
+
+    <select id="getCount" resultType="int" >
+        select count(*) from role_permission
+        <include refid="page_where" />
+    </select>
+
+
+    <select id="getByPrimaryKey" resultMap="rolePermissionResultMap"  >
+		select <include refid="table_columns" />
+		from role_permission
+		<trim prefix="where" prefixOverrides="and | or ">
+			<if test="1==1">and ID = #{id}</if>
+        </trim>
+	</select>
+	
+	<!-- other SQL -->
+
+
+</mapper>
