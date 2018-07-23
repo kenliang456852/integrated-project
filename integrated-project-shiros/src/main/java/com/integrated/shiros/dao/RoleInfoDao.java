@@ -28,7 +28,7 @@ public interface RoleInfoDao {
 
     RoleInfo getByPrimaryKey(@Param("id") String id);
 
-	
+    List<RoleInfo> getListByAcctId(@Param("acctId") String acctId);
 
-
+    List<RoleInfo> getListByAcctName(@Param("acctName") String acctName);
 }

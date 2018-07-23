@@ -91,6 +91,17 @@
 	</select>
 	
 	<!-- other SQL -->
+	<select id="getListByAcctName" resultMap="permissionInfoResultMap"  >
+		select pi.ID, pi.PERMISSION_NAME
+		from busi_acct_info bai
+		left join acct_role ar on ar.acct_id=bai.id
+		left join role_permission rp on ar.role_id=rp.role_id
+		left join permission_info pi on rp.permission_id=pi.id
+
+		<trim prefix="where" prefixOverrides="and | or ">
+			<if test="1==1">and bai.acct_name = #{acctName}</if>
+		</trim>
+	</select>
 
 
 </mapper>

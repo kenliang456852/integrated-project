@@ -92,5 +92,22 @@
 	
 	<!-- other SQL -->
 
+	<select id="getListByAcctId" resultMap="roleInfoResultMap"  >
+		select <include refid="table_columns" />
+		from role_info
+		<trim prefix="where" prefixOverrides="and | or ">
+			<if test="1==1">and ID = #{acctId}</if>
+		</trim>
+	</select>
+
+	<select id="getListByAcctName" resultMap="roleInfoResultMap"  >
+		select ri.ID,ri.ROLE_NAME
+		from busi_acct_info bai
+		left join acct_role ar on ar.acct_id=bai.id
+		left join role_info ri on ri.id=ar.role_id
+		<trim prefix="where" prefixOverrides="and | or ">
+			<if test="1==1">and bai.acct_name = #{acctName}</if>
+		</trim>
+	</select>
 
 </mapper>

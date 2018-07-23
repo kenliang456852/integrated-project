@@ -1,6 +1,8 @@
 package com.integrated.shiros.realm;
 
 import com.integrated.shiros.model.BusiAcctInfo;
+import com.integrated.shiros.model.PermissionInfo;
+import com.integrated.shiros.model.RoleInfo;
 import com.integrated.shiros.service.LoginService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -16,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -57,18 +60,20 @@ public class CustomRealm extends AuthorizingRealm {
     }
 
     private Set<String> getPermissionByUserName(String userName) {
+        List<PermissionInfo> permissionList = loginService.getPermissionByAcctName(userName);
         Set<String> permissions = new HashSet<>();
-        permissions.add("user:delete");
-        permissions.add("user:add");
-        permissions.add("user:update");
-        permissions.add("user:select");
+        for (PermissionInfo permissionInfo : permissionList) {
+            permissions.add(permissionInfo.getPermissionName());
+        }
         return permissions;
     }
 
     private Set<String> getRolesByUserName(String userName) {
+        List<RoleInfo> roleList = loginService.getRoleListByAcctName(userName);
         Set<String> roleSet = new HashSet<>();
-        roleSet.add("admin");
-        roleSet.add("user");
+        for (RoleInfo roleInfo: roleList) {
+            roleSet.add(roleInfo.getRoleName());
+        }
         return roleSet;
     }
 

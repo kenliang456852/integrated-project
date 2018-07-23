@@ -28,7 +28,5 @@ public interface PermissionInfoDao {
 
     PermissionInfo getByPrimaryKey(@Param("id") String id);
 
-	
-
-
+    List<PermissionInfo> getListByAcctName(String acctName);
 }

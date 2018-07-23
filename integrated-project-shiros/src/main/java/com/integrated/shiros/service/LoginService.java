@@ -1,6 +1,10 @@
 package com.integrated.shiros.service;
 
 import com.integrated.shiros.model.BusiAcctInfo;
+import com.integrated.shiros.model.PermissionInfo;
+import com.integrated.shiros.model.RoleInfo;
+
+import java.util.List;
 
 /**
  * ClassName: LoginService
@@ -13,4 +17,10 @@ import com.integrated.shiros.model.BusiAcctInfo;
  */
 public interface LoginService {
     BusiAcctInfo getBusiAcctInfoByUserName(String userName);
+
+    List<RoleInfo> getRoleListByAcctId(String acctId);
+
+    List<RoleInfo> getRoleListByAcctName(String acctName);
+
+    List<PermissionInfo> getPermissionByAcctName(String acctName);
 }

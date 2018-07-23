@@ -12,7 +12,7 @@
 
     <description>== Shiro Components ==</description>
 
-    <!-- ============================================================================ -->
+    <!-- ==========================shiro================================================ -->
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager" />
         <property name="loginUrl" value="toPage/login.html" />
@@ -37,6 +37,12 @@
     <bean id="credentialsMatcher" class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
         <property name="hashAlgorithmName" value="md5" />
         <property name="hashIterations" value="1" />
+    </bean>
+
+    <!-- ============================================================================ -->
+    <bean class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
+    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+        <property name="securityManager" ref="securityManager" />
     </bean>
     <!-- ============================================================================ -->
 
