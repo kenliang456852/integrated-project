@@ -30,6 +30,16 @@ public class VerifyUtils {
      */
     private static final String MOBILE_PHONE_REGEX = "^((13[0-9])|(14[0-9])|(15([0-9]))|(17[0-9])|(18[0-9]))\\d{8}$";
 
+    ;
+
+    /**
+     * @Description 电话格式验证
+     * @author liangchao
+     * @date 2018/7/30 15:48
+     */
+    private static final String PHONE_CALL_REGEX = "^(\\(\\d{3,4}\\)|\\d{3,4}-)?\\d{7,8}(-\\d{1,4})?$";
+    private static final String Tel_REGEX = "/^\\d{3,4}-?\\d{7,9}$/";
+
     /**
      * @Description email正则
      * @author liangchao
@@ -68,6 +78,21 @@ public class VerifyUtils {
     public static boolean isEmail(String email) {
         if(StringUtils.isNotBlank(email)
                 && isPattern(EMAIL_REGEX, email)) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * @Description 校验电话号
+     * @author liangchao
+     * @date 2018/7/30 15:51
+     * @param phoneCall
+     * @return
+     */
+    public static boolean isPhoneCall(String phoneCall) {
+        if(StringUtils.isNotBlank(phoneCall)
+                && isPattern(PHONE_CALL_REGEX, phoneCall)) {
             return true;
         }
         return false;

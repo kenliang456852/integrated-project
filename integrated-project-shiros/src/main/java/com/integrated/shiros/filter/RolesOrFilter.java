@@ -17,7 +17,8 @@ import javax.servlet.ServletResponse;
  * liangc           修改时间           0.0.1              描述
  */
 public class RolesOrFilter extends AuthorizationFilter {
-    @Override protected boolean isAccessAllowed(ServletRequest servletRequest, ServletResponse servletResponse,
+    @Override
+    protected boolean isAccessAllowed(ServletRequest servletRequest, ServletResponse servletResponse,
             Object o) throws Exception {
         Subject subject = getSubject(servletRequest, servletResponse);
         String[] roles = (String[]) o;

@@ -28,7 +28,7 @@
         </property>
         <property name="filters">
             <util:map>
-                <entry key="roleOr" value-ref="roleOrFilter" />
+                <entry key="rolesOr" value-ref="roleOrFilter" />
             </util:map>
         </property>
     </bean>
@@ -51,4 +51,8 @@
     </bean>
     <!-- ============================================================================ -->
     <bean id="roleOrFilter" class="com.integrated.shiros.filter.RolesOrFilter"/>
+
+    <bean id="jedisPool" class="redis.clients.jedis.JedisPool">
+
+    </bean>
 </beans>
