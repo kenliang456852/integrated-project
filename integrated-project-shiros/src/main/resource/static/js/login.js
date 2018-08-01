@@ -23,7 +23,7 @@ $(function () {
             success: function (data) {
                 console.log(data.retCode);
                 if(data && data.retCode ==='0000000') {
-                    window.location.href = $ctx + "toPage/index.html";
+                    window.location.href = $ctx + "login.html";
                 } else if(data) {
                     alert(data.retDesc);
                 } else {

@@ -12,7 +12,7 @@
 
     <description>== Shiro Components ==</description>
 
-    <!-- ==========================shiro================================================ -->
+    <!-- ==========================shiro start================================================ -->
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager" />
         <property name="loginUrl" value="login.html" />
@@ -20,6 +20,7 @@
         <property name="filterChainDefinitions">
             <value>
                 /login.html = anon
+                /index.html = anon
                 /login = anon
                 /testRole = rolesOr["admin","user"]
                 /testRole1 = roles["admin","user"]
@@ -35,24 +36,43 @@
 
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
         <property name="realm" ref="customRealm" />
+        <property name="sessionManager" ref="sessionManager" />
+        <property name="cacheManager" ref="cacheManager" />
+        <property name="rememberMeManager" ref="cookieRememberMeManager" />
     </bean>
     <bean id="customRealm" class="com.integrated.shiros.realm.CustomRealm">
         <property name="credentialsMatcher" ref="credentialsMatcher" />
     </bean>
+    <bean id="sessionManager" class="com.integrated.shiros.manager.CustomSessionManager">
+        <property name="sessionDAO" ref="redisSessionDao" />
+    </bean>
+    <bean id="cacheManager" class="com.integrated.shiros.cache.RedisCacheManager" />
+    <bean id="cookieRememberMeManager" class="org.apache.shiro.web.mgt.CookieRememberMeManager">
+        <property name="cookie" ref="simpleCookie" />
+    </bean>
+
     <bean id="credentialsMatcher" class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
         <property name="hashAlgorithmName" value="md5" />
         <property name="hashIterations" value="1" />
     </bean>
 
-    <!-- ============================================================================ -->
     <bean class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
     <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
         <property name="securityManager" ref="securityManager" />
     </bean>
-    <!-- ============================================================================ -->
+
     <bean id="roleOrFilter" class="com.integrated.shiros.filter.RolesOrFilter"/>
 
     <bean id="jedisPool" class="redis.clients.jedis.JedisPool">
 
     </bean>
+
+    <bean id="redisSessionDao" class="com.integrated.shiros.session.RedisSessionDao" />
+
+    <bean id="simpleCookie" class="org.apache.shiro.web.servlet.SimpleCookie" >
+        <constructor-arg value="rememberMe" />
+        <property name="maxAge" value="20000000" />
+    </bean>
+    <bean id="redisCache" class="com.integrated.shiros.cache.RedisCache" />
+    <!-- ==========================shiro end================================================ -->
 </beans>

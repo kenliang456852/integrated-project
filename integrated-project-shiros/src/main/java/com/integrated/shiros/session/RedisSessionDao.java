@@ -48,6 +48,7 @@ public class RedisSessionDao extends AbstractSessionDAO {
     @Override
     protected Serializable doCreate(Session session) {
         Serializable sessionId = generateSessionId(session);
+        assignSessionId(session,sessionId);
         //设定一个key  将session序列化设为值 存储在缓存中。
         byte[] key = this.getKey(session.getId());
         byte[] value = SerializationUtils.serialize(session);

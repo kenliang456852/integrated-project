@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -29,10 +30,30 @@ public class JedisUtil {
      * @param value
      * @return
      */
-    public void set(byte[] key, byte[] value) {
+    public byte[] set(byte[] key, byte[] value) {
         Jedis jedis = jedisPool.getResource();
         try {
             jedis.set(key, value);
+            return value;
+        } finally {
+            jedis.close();
+        }
+    }
+
+    /**
+     * @Description 设置 key value outTime(过期时间)
+     * @author liangchao
+     * @date 2018/7/24 23:01
+     * @param key
+     * @param value
+     * @return
+     */
+    public byte[] set(byte[] key, byte[] value, int outTime) {
+        Jedis jedis = jedisPool.getResource();
+        try {
+            jedis.set(key, value);
+            jedis.expire(key, outTime * 60);
+            return value;
         } finally {
             jedis.close();
         }
@@ -43,13 +64,13 @@ public class JedisUtil {
      * @author liangchao
      * @date 2018/7/24 23:00
      * @param key
-     * @param i （单位分钟）
+     * @param outTime （单位分钟）
      * @return
      */
-    public void expire(byte[] key, int i) {
+    public void expire(byte[] key, int outTime) {
         Jedis jedis = jedisPool.getResource();
         try {
-            jedis.expire(key, i * 60);
+            jedis.expire(key, outTime * 60);
         } finally {
             jedis.close();
         }
@@ -80,5 +101,24 @@ public class JedisUtil {
         } finally {
             jedis.close();
         }
+    }
+
+    public List<byte[]> values(String shiroSessionPrefix) {
+        List<byte[]> list = null;
+        Jedis jedis = jedisPool.getResource();
+        try {
+            Set<byte[]> bytes = keySet(shiroSessionPrefix);
+            if(null != bytes) {
+                for (byte[] b : bytes) {
+                    byte[] valB = jedis.get(b);
+                    if(null != valB) {
+                        list.add(valB);
+                    }
+                }
+            }
+        } finally {
+            jedis.close();
+        }
+        return list;
     }
 }

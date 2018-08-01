@@ -29,15 +29,16 @@ public class LoginController {
 
     @PostMapping("/login")
     public JsonResponse login(@RequestBody JsonRequest<LoginInfo> jsonRequest) {
-        LoginInfo reqBody = jsonRequest.getReqBody();
-        logger.info(reqBody.toString());
-        Subject subject = SecurityUtils.getSubject();
-        UsernamePasswordToken token = new UsernamePasswordToken(reqBody.getUserName(),reqBody.getPassword());
-        subject.login(token);
+//        LoginInfo reqBody = jsonRequest.getReqBody();
+//        logger.info(reqBody.toString());
+//        Subject subject = SecurityUtils.getSubject();
+//        UsernamePasswordToken token = new UsernamePasswordToken(reqBody.getUserName(),reqBody.getPassword());
+//        token.setRememberMe(true);
+//        subject.login(token);
         return new JsonResponse();
     }
 
-    @PostMapping("register")
+    @PostMapping("/register")
     public JsonResponse register() {
 
         return new JsonResponse();
