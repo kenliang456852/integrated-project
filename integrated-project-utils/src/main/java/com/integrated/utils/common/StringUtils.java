@@ -743,6 +743,31 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
         return sb.toString();
     }
 
+    public static String concat(Object... values) {
+        return concatReplaceNulls("", values);
+    }
+
+    public static String concatReplaceNulls(String nullValue, Object... values) {
+        if (values == null) {
+            return "";
+        } else {
+            StringBuilder sb = new StringBuilder();
+            Object[] var3 = values;
+            int var4 = values.length;
+
+            for(int var5 = 0; var5 < var4; ++var5) {
+                Object value = var3[var5];
+                if (value == null) {
+                    sb.append(nullValue);
+                } else {
+                    sb.append(value.toString());
+                }
+            }
+
+            return sb.toString();
+        }
+    }
+
     public static void main(String[] args) throws Exception {
 /*String string = "This is a smiley \uD83C\uDFA6 face\uD860\uDD5D \uD860\uDE07 \uD860\uDEE2 \uD863\uDCCA \uD863\uDCCD \uD863\uDCD2 \uD867\uDD98 ";
    System.out.println(containsEmoji(string));

@@ -33,6 +33,7 @@
         <module>integrated-project-datasource</module>
         <module>integrated-project-shiros</module>
         <module>integrated-project-core</module>
+        <module>integrated-project-classloader</module>
     </modules>
     <profiles>
         <profile>
