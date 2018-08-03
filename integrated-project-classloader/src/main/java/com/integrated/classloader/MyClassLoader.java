@@ -1,6 +1,8 @@
 package com.integrated.classloader;
 
 import com.integrated.utils.common.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 
@@ -14,7 +16,9 @@ import java.io.*;
  * liangc           修改时间           0.0.1              描述
  */
 public class MyClassLoader extends ClassLoader {
-    //要加载的java类的classpath路径
+    private Logger logger = LoggerFactory.getLogger(MyClassLoader.class);
+
+//    要加载的java类的classpath路径
     private String classpath;
 
     public MyClassLoader(String classpath) {
@@ -40,10 +44,11 @@ public class MyClassLoader extends ClassLoader {
             while ((b = is.read()) != -1) {
                 byteArrayOutputStream.write(b);
             }
+            return byteArrayOutputStream.toByteArray();
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
         } finally {
             try {
                 if(null != is) {
