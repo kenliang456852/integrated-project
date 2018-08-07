@@ -4,7 +4,7 @@ spring:
   profiles:
     active: local
   datasource:
-    url: jdbc:mysql://127.0.0.1/integrated?useSSL=FALSE&serverTimezone=UTC
+    url: jdbc:mysql://127.0.0.1/integrated?useSSL:FALSE&serverTimezone:UTC
     username: root
     password: root
     type: com.alibaba.druid.pool.DruidDataSource
@@ -22,7 +22,7 @@ spring:
     testOnReturn: false
     poolPreparedStatements: true
     maxOpenPreparedStatements: 20
-    connectionProperties: druid.stat.mergeSql=true
+    connectionProperties: druid.stat.mergeSql:true
     db-name: integrated
   thymeleaf:
     prefix: classpath:/pages/
@@ -30,6 +30,18 @@ spring:
     static-locations: classpath:/static/
   mvc:
     static-path-pattern: /static/**
+  redis:
+    host: 127.0.0.1
+    post: 6379
+    timeout: 20000
+#    cluster:
+#      nodes: 127.0.0.1
+#      max-redirects: 6
+    pool:
+      max-active: 8
+      min-idle: 0
+      max-idle: 8
+      max-wait: -1
 mybatis:
   mapper-locations: classpath:mappings/*.xml  # 注意：一定要对应mapper映射xml文件的所在路径
   type-aliases-package: com.integrated.shiros.model  # 注意：对应实体类的路径
