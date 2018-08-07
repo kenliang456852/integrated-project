@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 
 /**
  * ClassName: ShiroApplication
@@ -17,6 +18,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication(scanBasePackages = {"com.integrated.shiros"})
 @MapperScan(basePackages = {"com.integrated.shiros.dao"})
+@ServletComponentScan
 public class ShiroApplication {
     private static Logger logger = LoggerFactory.getLogger(ShiroApplication.class);
     public static void main(String[] args) {

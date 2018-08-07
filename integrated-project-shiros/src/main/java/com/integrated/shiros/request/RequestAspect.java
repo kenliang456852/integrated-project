@@ -1,6 +1,7 @@
-package com.integrated.shiros.aspect;
+package com.integrated.shiros.request;
 
 import com.integrated.utils.common.IpUtils;
+import com.integrated.utils.common.StringUtils;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
@@ -59,6 +60,9 @@ public class RequestAspect {
         //类方法
         String declaringTypeName = joinPoint.getSignature().getDeclaringTypeName(); //类名
         String name = joinPoint.getSignature().getName();//类方法名
+        if( StringUtils.equals(name, "toPage")) {
+            return ;
+        }
         logger.info("class_method={}", declaringTypeName + "." + name);
 
         //参数
