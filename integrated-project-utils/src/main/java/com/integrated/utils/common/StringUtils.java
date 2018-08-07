@@ -5,6 +5,7 @@ import org.apache.commons.lang3.StringEscapeUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.regex.Matcher;
@@ -24,6 +25,56 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 
     private static final char SEPARATOR = '_';
     private static final String CHARSET_NAME = "UTF-8";
+
+    /**
+     * @Description 过滤null字符串变成""
+     * @author liangchao
+     * @date 2018/4/25 19:08
+     * @param value
+     * @return
+     */
+    private String getStringFilterNull(String value) {
+        if(null == value || "".equals(value)) {
+            return "";
+        }
+        return value.trim();
+    }
+
+    /**
+     * @Description 字符串首字母大写
+     * @author liangchao
+     * @date 2018/4/25 19:09
+     * @param value
+     * @return
+     */
+    public static String captureName(String value) {
+        //     name = name.substring(0, 1).toUpperCase() + name.substring(1);
+        //        return  name;
+        char[] cs = value.toCharArray();
+        cs[0] -= 32;
+        return String.valueOf(cs);
+
+    }
+
+    /**
+     * @Description 对特殊字符进行转译UTF-8
+     * @author liangchao
+     * @date 2018/4/26 16:48
+     * @param value
+     * @参考网址：https://blog.csdn.net/vgwciro8nu/article/details/60117569
+     * @return
+     */
+    public static String decodeUrl(String value) {
+        String decodeUrl = "";
+        try {
+            String transformUrl = value.replaceAll("%(?![0-9a-fA-F]{2})", "%25");
+            decodeUrl = URLDecoder.decode(transformUrl,"UTF-8");
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            return decodeUrl;
+        }
+    }
 
     /**
      * 转换为字节数组
