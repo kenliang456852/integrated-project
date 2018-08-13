@@ -17,6 +17,7 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+
             <!-- mvn install 跳过junit -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -39,32 +40,20 @@
         <profile>
             <id>dev</id>
             <properties>
-                <env>dev</env>
+                <profiles.active>dev</profiles.active>
             </properties>
-
         </profile>
         <profile>
-            <id>test</id>
+            <id>alpha</id>
             <properties>
-                <env>test</env>
+                <profiles.active>alpha</profiles.active>
             </properties>
-
         </profile>
         <profile>
             <id>prod</id>
             <properties>
-                <env>prod</env>
+                <profiles.active>prod</profiles.active>
             </properties>
-
-        </profile>
-        <profile>
-            <id>local</id>
-            <properties>
-                <env>local</env>
-            </properties>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
         </profile>
     </profiles>
     <properties>

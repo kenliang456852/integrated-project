@@ -1,8 +1,10 @@
 package com.integrated.shiros.request;
 
+import com.integrated.shiros.configs.UrlFilterConfig;
 import com.integrated.utils.common.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -23,6 +25,10 @@ import java.util.Map;
 @WebFilter(filterName = "requestFilter", urlPatterns = "/*")
 public class RequestFilter implements Filter {
     private Logger logger = LoggerFactory.getLogger(RequestFilter.class);
+
+    @Autowired
+    private UrlFilterConfig urlFilterConfig;
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         logger.info("RequestFilter do init execute...");
@@ -35,14 +41,20 @@ public class RequestFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         // 获得url
         String requestURI = req.getRequestURI();
-        // TODO： 判断utl时候需要过滤 不过滤的放行
-
+        // 判断utl时候需要过滤 不过滤的放行
+        if(urlFilterConfig.check(requestURI)) {
+            chain.doFilter(req,response);
+            return ;
+        }
         // 处理POST请求
         if(StringUtils.equals("POST", req.getMethod())) {
             Map<String, Object> resultParamMap = new HashMap<>();
             Map<String, String[]> parameterMap = req.getParameterMap();
             ParameterRequestWrapper parameterRequestWrapper = new ParameterRequestWrapper(req, resultParamMap);
             chain.doFilter(parameterRequestWrapper, response);
+        } else {
+
+            chain.doFilter(req, response);
         }
 
     }
