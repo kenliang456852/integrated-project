@@ -27,7 +27,7 @@ urlfilter:
     login: login
 spring:
   profiles:
-    active: prod
+    active: dev
   thymeleaf:
     prefix: classpath:/pages/
   resources:

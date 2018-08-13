@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -35,26 +36,35 @@ public class RequestFilter implements Filter {
     }
 
     @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+    public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
             throws IOException, ServletException {
         logger.info("RequestFilter do doFilter execute...");
-        HttpServletRequest req = (HttpServletRequest) request;
+        HttpServletRequest request = (HttpServletRequest) req;
         // 获得url
-        String requestURI = req.getRequestURI();
+        String requestURI = request.getRequestURI();
         // 判断utl时候需要过滤 不过滤的放行
         if(urlFilterConfig.check(requestURI)) {
-            chain.doFilter(req,response);
+            chain.doFilter(request,resp);
             return ;
         }
         // 处理POST请求
-        if(StringUtils.equals("POST", req.getMethod())) {
+        if(StringUtils.equals("POST", request.getMethod())) {
+            logger.info("contentType: " + request.getContentType());
+
+            String queryString = request.getQueryString();
+            HttpServletResponse response = (HttpServletResponse) resp;
+            response.setCharacterEncoding("UTF-8");
+            response.setContentType("application/json; charset=utf-8");
             Map<String, Object> resultParamMap = new HashMap<>();
-            Map<String, String[]> parameterMap = req.getParameterMap();
-            ParameterRequestWrapper parameterRequestWrapper = new ParameterRequestWrapper(req, resultParamMap);
-            chain.doFilter(parameterRequestWrapper, response);
+            Map<String, String[]> parameterMap = request.getParameterMap();
+//            ParameterRequestWrapper parameterRequestWrapper = new ParameterRequestWrapper(request, resultParamMap);
+            HttpServletRequest httpServletRequest = (HttpServletRequest) request;
+            // 防止流读取一次后就没有了, 所以需要将流继续写出去
+            ServletRequest requestWrapper = new BodyReaderHttpServletRequestWrapper(httpServletRequest);
+            chain.doFilter(requestWrapper, response);
         } else {
 
-            chain.doFilter(req, response);
+            chain.doFilter(request, resp);
         }
 
     }

@@ -28,7 +28,7 @@ public class LoginController {
     private Logger logger = LoggerFactory.getLogger(LoginController.class);
 
     @PostMapping("/login")
-    public JsonResponse login(@RequestBody JsonRequest<LoginInfo> jsonRequest) {
+    public JsonResponse login(@RequestBody LoginInfo loginInfo) {
 //        LoginInfo reqBody = jsonRequest.getReqBody();
 //        logger.info(reqBody.toString());
 //        Subject subject = SecurityUtils.getSubject();
