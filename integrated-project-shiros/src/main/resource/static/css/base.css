@@ -1,0 +1,185 @@
+﻿@charset "UTF-8";
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+form,
+fieldset,
+input,
+textarea,
+p,
+td {
+  margin: 0;
+  padding: 0;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+@font-face {
+  font-family: 'Microsoft YaHei';
+  src: url("../fonts/calibri.ttf"), url('../fonts/NotoSansHans-DemiLight.otf');
+}
+html {
+  background-color: #ffffff;
+}
+body {
+  font-family: '微软雅黑','Microsoft Yahei',Helvetica, Arial, Lucida Grande, Tahoma, sans-serif;
+background-color: #ffffff;
+  color: #333333;
+  font-size: 12px;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+ol,
+li,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+  font-weight: normal;
+}
+.fb {
+  font-weight: bold;
+}
+.fn {
+  font-weight: normal;
+}
+a {
+  text-decoration: none;
+  color: #333333;
+}
+a:hover {
+  text-decoration: none;
+}
+input {
+  border: none;
+  outline: none;
+}
+textarea {
+  resize: none;
+  height: 200%;
+}
+img,
+textarea {
+  border: 0;
+  vertical-align: middle;
+}
+fieldset,
+img,
+input,
+button,
+select {
+  border: none;
+  padding: 0;
+  margin: 0;
+  outline-style: none;
+  box-shadow: none;font-family: '微软雅黑','Microsoft Yahei';
+}
+.clearfix::before,
+.clearfix::after {
+  content: '';
+  display: block;
+  visibility: hidden;
+  clear: both;
+  line-height: 0;
+  height: 0;
+}
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+.dis {
+  display: block;
+}
+.undis {
+  display: none;
+}
+::-webkit-scrollbar-track-piece {
+  background-color: #f8f8f8;
+  border-radius: 8px;
+}
+::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #e5e5e5;
+  background-clip: padding-box;
+  min-height: 28px;
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: #bbb;
+}
+/* 公共头部 */
+/* layui 弹窗样式 */
+.layui-layer-hui .layui-layer-content {
+  padding: 20px 100px!important;
+  font-size: 16px!important;
+  white-space: nowrap;
+}
+/*清除chrome input默认参数显示黄色*/
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+/*
+.layui-confirm {
+  width: 445/75rem !important;
+  .layui-m-layercont {
+    padding: 0;
+  }
+  .layui-m-layerbtn {
+    height: auto;
+    span {
+      height: 70/75rem;
+      line-height: 72/75rem;
+      font-size: 16/37.5rem;
+      text-align: center;
+      color: @font-666;
+    }
+    span:last-of-type {
+      //color: @pinkish-red !important;
+    }
+  }
+}
+*/

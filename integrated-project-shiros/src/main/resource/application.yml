@@ -25,11 +25,16 @@ urlfilter:
     ico: .ico
   completely:
     login: login
+
 spring:
   profiles:
     active: dev
+  devtools:
+    restart:
+      enabled: true
   thymeleaf:
     prefix: classpath:/pages/
+    cache: false
   resources:
     static-locations: classpath:/static/
   mvc:

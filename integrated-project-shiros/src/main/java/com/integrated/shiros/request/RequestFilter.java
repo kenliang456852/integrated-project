@@ -55,12 +55,9 @@ public class RequestFilter implements Filter {
             HttpServletResponse response = (HttpServletResponse) resp;
             response.setCharacterEncoding("UTF-8");
             response.setContentType("application/json; charset=utf-8");
-            Map<String, Object> resultParamMap = new HashMap<>();
-            Map<String, String[]> parameterMap = request.getParameterMap();
-//            ParameterRequestWrapper parameterRequestWrapper = new ParameterRequestWrapper(request, resultParamMap);
-            HttpServletRequest httpServletRequest = (HttpServletRequest) request;
+//            HttpServletRequest httpServletRequest = (HttpServletRequest) request;
             // 防止流读取一次后就没有了, 所以需要将流继续写出去
-            ServletRequest requestWrapper = new BodyReaderHttpServletRequestWrapper(httpServletRequest);
+            ServletRequest requestWrapper = new BodyReaderHttpServletRequestWrapper(request);
             chain.doFilter(requestWrapper, response);
         } else {
 

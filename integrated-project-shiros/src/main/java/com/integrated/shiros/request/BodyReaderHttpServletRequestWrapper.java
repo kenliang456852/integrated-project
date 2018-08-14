@@ -4,9 +4,13 @@ import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 
+import com.integrated.core.web.json.JsonHeader;
+import com.integrated.core.web.json.JsonRequest;
 import com.integrated.utils.common.StringUtils;
 
 import com.alibaba.fastjson.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -15,10 +19,16 @@ import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 
 /**
- * @Description : 参数重组
- * @Date : 2018/5/25 16:09
+ * ClassName: RequestWrapper
+ * Description: 参数重组
+ * Author: liangchao
+ * Date: 2018/8/7 11:47
+ * History:
+ * <author>          <time>          <version>          <desc>
+ * liangc           修改时间           0.0.1              描述
  */
 public class BodyReaderHttpServletRequestWrapper extends HttpServletRequestWrapper {
+    private Logger logger = LoggerFactory.getLogger(BodyReaderHttpServletRequestWrapper.class);
 
     private byte[] body;
 
@@ -34,13 +44,19 @@ public class BodyReaderHttpServletRequestWrapper extends HttpServletRequestWrapp
         body = HttpHelper.getBodyString(request).getBytes(Charset.forName("UTF-8"));
         String bodyStr = StringUtils.toString(body);
         if(!StringUtils.isEmpty(bodyStr)){
-        	JSONObject parseObject = JSONObject.parseObject(bodyStr);
-        	JSONObject reqBody = parseObject.getJSONObject("reqBody");
-        	reqBody.put("managerAcctId",  JSONObject.parseObject(parseObject.getString("reqHeader")).getString("acctId"));
-        	reqBody.put("enterpriseId",  JSONObject.parseObject(parseObject.getString("reqHeader")).getString("memId"));
-        	if(!StringUtils.isEmpty(parseObject.toJSONString())){
-        		body = parseObject.toJSONString().getBytes();
-        	}
+            bodyStr = StringUtils.decodeUrl(bodyStr);
+//            try {
+                JsonRequest jsonRequest = JSONObject.parseObject(bodyStr, JsonRequest.class);
+                if(null != jsonRequest) {
+                    Object reqBody = jsonRequest.getReqBody();
+                    body = JSONObject.toJSONString(reqBody).getBytes();
+//                    JsonHeader reqHeader = jsonRequest.getReqHeader();
+//                    TODO:根据 sid（sessionId）  查询当前登录人的信息放入 ThreadLocal
+//                    reqHeader.getSid();
+                }
+//            } catch (Exception e) {
+//                logger.error("BodyReaderHttpServletRequestWrapper do JsonObject JsonRequest error", e);
+//            }
         }
     }
 

@@ -1,11 +1,9 @@
 package com.integrated.shiros.controller;
 
-import com.integrated.core.web.json.JsonRequest;
 import com.integrated.core.web.json.JsonResponse;
 import com.integrated.shiros.dto.vo.LoginInfo;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,12 +27,11 @@ public class LoginController {
 
     @PostMapping("/login")
     public JsonResponse login(@RequestBody LoginInfo loginInfo) {
-//        LoginInfo reqBody = jsonRequest.getReqBody();
-//        logger.info(reqBody.toString());
-//        Subject subject = SecurityUtils.getSubject();
-//        UsernamePasswordToken token = new UsernamePasswordToken(reqBody.getUserName(),reqBody.getPassword());
-//        token.setRememberMe(true);
-//        subject.login(token);
+        logger.info(loginInfo.toString());
+        Subject subject = SecurityUtils.getSubject();
+        UsernamePasswordToken token = new UsernamePasswordToken(loginInfo.getUserName(),loginInfo.getPassword());
+        token.setRememberMe(true);
+        subject.login(token);
         return new JsonResponse();
     }
 

@@ -3,7 +3,7 @@ server:
 spring:
   profiles: dev
   datasource:
-    url: jdbc:mysql://127.0.0.1/integrated?useSSL:FALSE&serverTimezone:UTC
+    url: jdbc:mysql://127.0.0.1/integrated?useSSL=FALSE&serverTimezone=UTC
     username: root
     password: root
     type: com.alibaba.druid.pool.DruidDataSource
@@ -21,7 +21,7 @@ spring:
     testOnReturn: false
     poolPreparedStatements: true
     maxOpenPreparedStatements: 20
-    connectionProperties: druid.stat.mergeSql:true
+    connectionProperties: druid.stat.mergeSql=true
     db-name: integrated
   redis:
     host: 127.0.0.1

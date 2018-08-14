@@ -68,7 +68,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
         String decodeUrl = "";
         try {
             String transformUrl = value.replaceAll("%(?![0-9a-fA-F]{2})", "%25");
-            decodeUrl = URLDecoder.decode(transformUrl,"UTF-8");
+            decodeUrl = URLDecoder.decode(transformUrl, CHARSET_NAME);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
