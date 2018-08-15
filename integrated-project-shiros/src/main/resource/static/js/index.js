@@ -4,4 +4,21 @@ $(function() {
         tr1.find('td').eq(0).text(i)
         $('#bodyT').append(tr1);
     }
+    $("input[name='isJump']").bind("click", function() {
+        if(this.checked) {
+            $(this).parent().parent().attr("bgcolor","#E4E4E4");
+        } else {
+            $(this).parent().parent().attr("bgcolor","white");
+        }
+    });
 });
+function flushr() {
+    $('#flushdiv').find('select').val("");
+    console.log($('#flushdiv').find("input[type='checkbox']"));
+
+    $('#flushdiv').find("input[type='checkbox']").each(function(index,element) {
+        if(element.checked) {
+            element.click();
+        }
+    });
+}
