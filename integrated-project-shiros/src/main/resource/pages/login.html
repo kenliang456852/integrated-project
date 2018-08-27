@@ -1,39 +1,88 @@
-<html>
-<head>
-    <meta charset="UTF-8"/>
-    <title>登陆</title>
-    <link rel="stylesheet" href="/static/css/login.css" />
-    <script type="text/javascript" src="/static/commons/jquery-3.3.1.min.js" />
-    <script type="text/javascript" src="/static/commons/common.js"/>
-    <script type="text/javascript" src="/static/js/login.js"/>
-</head>
-<body>
+<!DOCTYPE HTML>
+<html lang="zxx">
 
-    <h1>klasikal Login Form</h1>
-    <div class="login-form">
-        <div class="close"> </div>
-        <div class="head-info">
-            <label class="lbl-1"> </label>
-            <label class="lbl-2"> </label>
-            <label class="lbl-3"> </label>
+<head>
+    <title>Home</title>
+    <!-- Meta tag Keywords -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="" />
+    <!--<link href="http://maxcdn.bootstrapcdn.com/css?family=Josefin+Sans:100,100i,300,300i,400,400i,600,600i,700,700i" rel="stylesheet" />-->
+    <!--<link href="http://maxcdn.bootstrapcdn.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet" />-->
+    <link rel="stylesheet" href="/static/css/style.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="/static/css/fontawesome-all.css" />
+    <!-- //web-fonts -->
+    <script src="/static/commons/jquery-3.3.1.min.js"></script>
+    <script src="/static/js/canva_moving_effect.js"></script>
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+</head>
+
+<body>
+<!-- bg effect -->
+<div id="bg">
+    <canvas></canvas>
+    <canvas></canvas>
+    <canvas></canvas>
+</div>
+<!-- //bg effect -->
+<!-- title -->
+<h1>Effect Login Form</h1>
+<!-- //title -->
+<!-- content -->
+<div class="sub-main-w3">
+    <form action="#" method="post">
+        <h2>Login Now
+            <i class="fas fa-level-down-alt"></i>
+        </h2>
+        <div class="form-style-agile">
+            <label>
+                <i class="fas fa-user"></i>
+                Username
+            </label>
+            <input placeholder="Username" name="Name" type="text" required="" />
         </div>
-        <div class="clear"> </div>
-        <div class="avtar">
-            <img src="../static/images/login/avtar.png" />
+        <div class="form-style-agile">
+            <label>
+                <i class="fas fa-unlock-alt"></i>
+                Password
+            </label>
+            <input placeholder="Password" name="Password" type="password" required="" />
         </div>
-        <form>
-            <input type="text" class="text" id="userName" value="Username" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Username';}" />
-            <div class="key">
-                <input type="password" id="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" />
-            </div>
-        </form>
-        <div class="signin">
-            <input type="button" id="login_btn" value="Login" />
-            <input type="button" id="register_btn" value="register" />
+        <!-- checkbox -->
+        <div class="wthree-text">
+            <ul>
+                <li>
+                    <label class="anim">
+                        <input type="checkbox" class="checkbox" required="" />
+                        <span>Stay Signed In</span>
+                    </label>
+                </li>
+                <li>
+                    <a href="#">Forgot Password?</a>
+                </li>
+            </ul>
         </div>
-    </div>
-    <div class="copy-rights">
-        <!--<p>Copyright &copy; 2015.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>-->
-    </div>
+        <!-- //checkbox -->
+        <input type="submit" value="Log In" />
+    </form>
+</div>
+<!-- //content -->
+
+<!-- copyright -->
+<div class="footer">
+    <p>Copyright &copy; 2018.Company name All rights reserved.</p>
+</div>
+<!-- //copyright -->
+
+
 </body>
+
 </html>

@@ -41,7 +41,7 @@ public class RequestFilter implements Filter {
         logger.info("RequestFilter do doFilter execute...");
         HttpServletRequest request = (HttpServletRequest) req;
         // 获得url
-        String requestURI = request.getRequestURI();
+        String requestURI = request.getRequestURI().substring(1);
         // 判断utl时候需要过滤 不过滤的放行
         if(urlFilterConfig.check(requestURI)) {
             chain.doFilter(request,resp);

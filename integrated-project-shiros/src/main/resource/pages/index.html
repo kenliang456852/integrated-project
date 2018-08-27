@@ -9,12 +9,12 @@
 </head>
 <body>
     <div id="flushdiv">
-        <table>
+        <table align="center">
             <thead>
                 <tr>
                     <th>编号</th>
                     <th>对跳</th>
-                    <th width="140px">金水/查杀/站边</th>
+                    <th width="140px">查验/站边</th>
                     <th width="200px">警徽流/踩人</th>
                     <th>角色</th>
                 </tr>
@@ -41,11 +41,9 @@
                             <option>11</option>
                             <option>12</option>
                         </select>
-                        <select>
-                            <option></option>
+                        <select class="hide">
                             <option>金水</option>
                             <option>查杀</option>
-                            <option>站边</option>
                         </select>
                     </td>
                     <td>
@@ -124,40 +122,49 @@
                     </td>
                 </tr>
             </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3">
+                        <img width="157px" src="/static/images/login/avtar.png" />
+                    </td>
+                    <td colspan="2">
+                        <label>本局身份是：</label>
+                        <select id="currentIdentity" onchange="changeFild()">
+                            <option></option>
+                            <option>预言家</option>
+                            <option>女巫</option>
+                            <option>猎人</option>
+                            <option>守卫</option>
+                            <option>村民</option>
+                            <option>白狼王</option>
+                            <option>狼人</option>
+                        </select>
+                        <br/><br/>
+                        <label>主播在</label>
+                        <select id="currentLocation" onchange="changeFild()">
+                            <option></option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+                        </select>
+                        <label>位置</label>
+                        <a href="javaScript:;" onclick="flushr()">刷新</a>
+                    </td>
+                </tr>
+            </tfoot>
         </table>
-        <!--<br/>-->
-        <label>主播在</label>
-        <select>
-            <option></option>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-            <option>6</option>
-            <option>7</option>
-            <option>8</option>
-            <option>9</option>
-            <option>10</option>
-            <option>11</option>
-            <option>12</option>
-        </select>
-        <label>位置&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本局身份是：</label>
-        <select>
-            <option></option>
-            <option>预言家</option>
-            <option>女巫</option>
-            <option>猎人</option>
-            <option>守卫</option>
-            <option>村民</option>
-            <option>白狼王</option>
-            <option>狼人</option>
-        </select>
-        <a href="javaScript:;" onclick="flushr()">刷新</a>
-        <br/>
     </div>
-    <div>
-        <textarea style="width: 500px; height: 150px"></textarea>
-    </div>
+    <!--<div>-->
+        <!--<textarea style="width: 500px; height: 150px"></textarea>-->
+    <!--</div>-->
 </body>
 </html>

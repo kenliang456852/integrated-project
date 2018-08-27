@@ -23,8 +23,9 @@ import java.util.regex.Pattern;
 public class StringUtils extends org.apache.commons.lang3.StringUtils {
 
 
-    private static final char SEPARATOR = '_';
-    private static final String CHARSET_NAME = "UTF-8";
+    public static final String FOLDER_DELIMITER = "/";
+    public static final char SEPARATOR = '_';
+    public static final String CHARSET_NAME = "UTF-8";
 
     /**
      * @Description 过滤null字符串变成""
