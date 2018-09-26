@@ -14,9 +14,18 @@ public class JsonHeader {
     public JsonHeader() {
     }
 
-    public JsonHeader(String sid) {
+    public JsonHeader(String appId, String chanalId, String ip, String sid) {
+        this.appId = appId;
+        this.chanalId = chanalId;
+        this.ip = ip;
         this.sid = sid;
     }
+
+    private String appId;
+
+    private String chanalId;
+
+    private String ip;
 
     private String sid;
 
@@ -26,5 +35,35 @@ public class JsonHeader {
 
     public void setSid(String sid) {
         this.sid = sid;
+    }
+
+    public String getAppId() {
+        return appId;
+    }
+
+    public void setAppId(String appId) {
+        this.appId = appId;
+    }
+
+    public String getChanalId() {
+        return chanalId;
+    }
+
+    public void setChanalId(String chanalId) {
+        this.chanalId = chanalId;
+    }
+
+    public String getIp() {
+        return ip;
+    }
+
+    public void setIp(String ip) {
+        this.ip = ip;
+    }
+
+    @Override
+    public String toString() {
+        return "JsonHeader{" + "appId='" + appId + '\'' + ", chanalId='" + chanalId + '\'' + ", ip='" + ip + '\''
+                + ", sid='" + sid + '\'' + '}';
     }
 }

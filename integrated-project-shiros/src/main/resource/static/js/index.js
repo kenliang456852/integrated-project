@@ -15,6 +15,23 @@ $(function() {
             $(this).parent().parent().find('select').eq(1).hide();
         }
     });
+
+    $('#ddlLine').combotree({
+        valueField: "id", //Value字段
+        textField: "text", //Text字段
+        multiple: true,
+        data: [{ "id": 1, "text": "All", "children": [{ "id": 13, "text": "C1" }, { "id": 14, "text": "C2" }, { "id": 15, "text": "C3"}]}]
+        ,
+        //                url: "tree_data2.json", //数据源
+        onCheck: function (node, checked) {
+            //让全选不显示
+            $("#ddlLine").combotree("setText", $("#ddlLine").combobox("getText").toString().replace("全选,", ""));
+        },
+        onClick: function (node, checked) {
+            //让全选不显示
+            $("#ddlLine").combotree("setText", $("#ddlLine").combobox("getText").toString().replace("全选,", ""));
+        }
+    });
 });
 function flushr() {
     $('#flushdiv').find('select').val("");

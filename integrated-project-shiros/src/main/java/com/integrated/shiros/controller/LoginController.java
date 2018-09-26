@@ -36,7 +36,7 @@ public class LoginController {
     }
 
     @PostMapping("/register")
-    public JsonResponse register() {
+    public JsonResponse register(@RequestBody LoginInfo loginInfo) {
 
         return new JsonResponse();
     }
