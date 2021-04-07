@@ -1,4 +1,4 @@
-package com.integrated.core.web.json;
+package core.web.json;
 
 import com.integrated.utils.common.DateUtils;
 import com.integrated.utils.common.StringUtils;

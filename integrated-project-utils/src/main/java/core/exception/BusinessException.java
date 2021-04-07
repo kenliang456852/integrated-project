@@ -1,4 +1,4 @@
-package com.integrated.core.exception;
+package core.exception;
 
 import com.integrated.core.i18n.I18nResource;
 

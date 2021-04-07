@@ -1,4 +1,4 @@
-package com.integrated.core.web.json;
+package core.web.json;
 
 import java.io.Serializable;
 

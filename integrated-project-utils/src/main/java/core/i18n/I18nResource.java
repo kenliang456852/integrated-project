@@ -1,4 +1,4 @@
-package com.integrated.core.i18n;
+package core.i18n;
 
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
